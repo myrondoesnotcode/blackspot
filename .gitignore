@@ -1,0 +1,9 @@
+# Never commit video footage or large media to the public site repo
+*.mp4
+*.mov
+*.mkv
+*.m4v
+*.dmg
+*.app/
+.DS_Store
+__pycache__/
