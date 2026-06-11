@@ -1,6 +1,6 @@
 {
-  "latest": "1.0.0",
+  "latest": "1.0.1",
   "url": "https://tryblackspot.com/premiere/Blackspot.ccx",
-  "notes": "Timeline gap detection + media defect scan markers.",
+  "notes": "Fix: timeline-gap markers now land in the right spot on sequences whose start timecode isn't 00:00:00:00.",
   "minPremiere": "25.6.0"
 }
