@@ -1,0 +1,6 @@
+{
+  "latest": "1.0.0",
+  "url": "https://tryblackspot.com/premiere/Blackspot.ccx",
+  "notes": "Timeline gap detection + media defect scan markers.",
+  "minPremiere": "25.6.0"
+}
