@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "url": "https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg",
-  "notes": "Unified version numbering, plus the recent export / recent-files / update-checker fixes."
+  "notes": "Adds exposure and flash / short-shot detection, faster 4K color scans, black-frame detection on 30/60fps footage, and an adjustable audio-dropout gap."
 }
