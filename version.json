@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "url": "https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg",
-  "notes": "Adds exposure and flash / short-shot detection, faster 4K color scans, black-frame detection on 30/60fps footage, and an adjustable audio-dropout gap."
+  "notes": "Adds an on-screen text check: Blackspot now reads burned-in titles, lower-thirds and captions on-device and flags likely misspellings — so an embarrassing typo in a name card gets caught before you ship."
 }

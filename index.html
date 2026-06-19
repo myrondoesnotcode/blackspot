@@ -33,7 +33,7 @@
   --yellow:#FFD200; --yellow-d:#EEC200; --yellow-soft:#FFF4C2;
   --c-black:#2A2A2A; --c-frozen:#33A7E6; --c-audio:#FF2E7E; --c-color:#84CC16;
   --c-gap:#A855F7; --c-decode:#EF4444; --c-count:#F59E0B;
-  --c-exposure:#F97316; --c-flash:#14B8A6;
+  --c-exposure:#F97316; --c-flash:#14B8A6; --c-spell:#6366F1;
   --ok:#1FB463; --warn:#F0A91E;
   --shadow-sm:0 1px 2px rgba(30,22,8,.05), 0 1px 3px rgba(30,22,8,.04);
   --shadow:0 6px 24px rgba(30,22,8,.07);
@@ -472,7 +472,7 @@ footer{padding:54px 0 70px}
         <div class="sec-eyebrow">What it catches</div>
         <h2 class="sec-h">Every way a render goes wrong.</h2>
       </div>
-      <p class="sec-lead" style="margin-top:0">One scanning pass looks for eight classes of defect — each pinned to a timestamp, each colour-coded so you know what you're walking into.</p>
+      <p class="sec-lead" style="margin-top:0">It flags nine kinds of trouble — eight render defects in a single pass, plus an on-device check that reads your on-screen text for typos — each pinned to a timestamp and colour-coded so you know what you're walking into.</p>
     </div>
     <div class="grid">
       <div class="dcard rv" style="--c:var(--c-black)">
@@ -506,6 +506,10 @@ footer{padding:54px 0 70px}
       <div class="dcard rv" style="--c:var(--c-flash);transition-delay:.05s">
         <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><h3>Flash &amp; short shots</h3><div class="tag">FLASH</div></div></div>
         <p>A stray or leftover clip that flashes by for under a second — the kind of misplaced shot that's almost impossible to catch at full speed.</p>
+      </div>
+      <div class="dcard rv" style="--c:var(--c-spell);transition-delay:.1s">
+        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l3.5-10 3.5 10"/><path d="M4 12.5h5"/><path d="M13 13l2.4 2.4L21 9"/></svg></span><div><h3>Spelling</h3><div class="tag">SPELL</div></div></div>
+        <p>Misspelled words in burned-in titles, lower-thirds and captions — read and spell-checked right on your Mac, so an embarrassing typo in a name card gets caught before it ships. It reads your editorial text, not the posters on the wall behind you.</p>
       </div>
     </div>
   </div>
