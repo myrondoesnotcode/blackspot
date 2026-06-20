@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blackspot — Find the flaw before they do</title>
-<meta name="description" content="Blackspot scans your full video export for black frames, freezes, audio dropouts and glitches — then hands you the exact timestamps to verify. 100% on your Mac.">
+<meta name="description" content="Blackspot scans your full video export for black frames, freezes, audio dropouts, glitches and misspelled titles — then hands you the exact timestamps to verify. 100% on your Mac.">
 <link rel="canonical" href="https://tryblackspot.com/">
 <!-- Open Graph / link preview (WhatsApp, iMessage, Slack, X, LinkedIn, Facebook) -->
 <meta property="og:type" content="website">
@@ -357,8 +357,8 @@ footer{padding:54px 0 70px}
       <span class="stop">Stop scrubbing.</span><br>Start <em>checking</em>.
     </h1>
     <p class="sub rv" style="transition-delay:.12s">
-      Blackspot scans your full video export for black frames, freezes, audio dropouts and glitches —
-      then hands you the <b>exact timestamps</b> to verify. Minutes, not the whole runtime.
+      Blackspot scans your full video export for black frames, freezes, audio dropouts, glitches —
+      even a misspelled title card — then hands you the <b>exact timestamps</b> to verify. Minutes, not the whole runtime.
     </p>
     <div class="cta-row rv" style="transition-delay:.18s">
       <a class="btn primary lg dl" href="https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg" download="Blackspot.dmg">
@@ -474,43 +474,30 @@ footer{padding:54px 0 70px}
       </div>
       <p class="sec-lead" style="margin-top:0">It flags nine kinds of trouble — eight render defects in a single pass, plus an on-device check that reads your on-screen text for typos — each pinned to a timestamp and colour-coded so you know what you're walking into.</p>
     </div>
-    <div class="grid">
-      <div class="dcard rv" style="--c:var(--c-black)">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg></span><div><h3>Black frames</h3><div class="tag">BLACK</div></div></div>
-        <p>Drops to black, down to a single frame. Catches dropouts and hard cuts that flash through black.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-frozen);transition-delay:.05s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg></span><div><h3>Frozen video</h3><div class="tag">FROZEN</div></div></div>
-        <p>A stuck or frozen picture that should be moving — held frames where the feed quietly stalled.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-audio);transition-delay:.1s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 10v4"/></svg></span><div><h3>Audio trouble</h3><div class="tag">AUDIO</div></div></div>
-        <p>Dead air where the track drops to silence, plus loud spikes and clipping judged against your program’s own loudness. It catches the gaps a tired ear skims past — without flagging an ordinary quiet beat.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-color)">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></span><div><h3>Color glitches</h3><div class="tag">COLOR</div></div></div>
-        <p>Solid green, magenta or blue render corruption — flat, full-frame glitches that real footage never produces.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-gap);transition-delay:.05s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h5M15 12h5M11 7l-2 5 2 5"/><path d="M13 7l2 5-2 5" opacity=".4"/></svg></span><div><h3>Dropped frames</h3><div class="tag">SKIPPED</div></div></div>
-        <p>Skipped frames in the timeline — common in raw Riverside, Zoom and OBS recordings — located right to the timestamp.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-decode);transition-delay:.1s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.5 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.5a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span><div><h3>Corrupt frames</h3><div class="tag">DECODE</div></div></div>
-        <p>Undecodable, damaged frames from a bad export or a corrupted file — the ones that crash a player mid-stream.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-exposure)">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><div><h3>Exposure</h3><div class="tag">EXPOSURE</div></div></div>
-        <p>A washed-out or blown stretch that's far brighter than the rest of your program — a bad grade or a mismatched clip. Judged against your footage's own levels, so a normally bright shot doesn't trip it.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-flash);transition-delay:.05s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><h3>Flash &amp; short shots</h3><div class="tag">FLASH</div></div></div>
-        <p>A stray or leftover clip that flashes by for under a second — the kind of misplaced shot that's almost impossible to catch at full speed.</p>
-      </div>
-      <div class="dcard rv" style="--c:var(--c-spell);transition-delay:.1s">
-        <div class="dh"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l3.5-10 3.5 10"/><path d="M4 12.5h5"/><path d="M13 13l2.4 2.4L21 9"/></svg></span><div><h3>Spelling</h3><div class="tag">SPELL</div></div></div>
-        <p>Misspelled words in burned-in titles, lower-thirds and captions — read and spell-checked right on your Mac, so an embarrassing typo in a name card gets caught before it ships. It reads your editorial text, not the posters on the wall behind you.</p>
-      </div>
+    <style>
+      .exgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+      @media(max-width:760px){.exgrid{grid-template-columns:repeat(2,1fr)}}
+      .extile{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);box-shadow:var(--shadow-sm);aspect-ratio:16/10;background:#11161d}
+      .extile img{width:100%;height:100%;object-fit:cover;display:block}
+      .extile figcaption{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:7px;background:rgba(20,20,18,.8);backdrop-filter:blur(6px);color:#fff;font-family:var(--mono);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px}
+      .extile figcaption i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+      .exmore{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+      .exmore .em{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink-2)}
+      .exmore .em i{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+      .exmore .em b{color:var(--ink);font-weight:600}
+    </style>
+    <div class="exgrid rv">
+      <figure class="extile" style="--c:var(--c-black)"><img src="assets/ex_black.jpg" alt="A fully black frame" loading="lazy"><figcaption><i></i>Black frame</figcaption></figure>
+      <figure class="extile" style="--c:var(--c-color)"><img src="assets/ex_glitch.jpg" alt="A solid green render-corruption frame" loading="lazy"><figcaption><i></i>Color glitch</figcaption></figure>
+      <figure class="extile" style="--c:var(--c-exposure)"><img src="assets/ex_washed.jpg" alt="A washed-out, over-exposed frame" loading="lazy"><figcaption><i></i>Washed out</figcaption></figure>
+      <figure class="extile" style="--c:var(--c-spell)"><img src="assets/ex_spell.jpg" alt="A title card with four misspelled words" loading="lazy"><figcaption><i></i>Misspelled title</figcaption></figure>
+    </div>
+    <div class="exmore rv">
+      <span class="em" style="--c:var(--c-frozen)"><i></i><b>Frozen video</b> — held frames where the feed stalled</span>
+      <span class="em" style="--c:var(--c-audio)"><i></i><b>Audio dropouts &amp; clipping</b> — dead air and loud spikes</span>
+      <span class="em" style="--c:var(--c-flash)"><i></i><b>Flash &amp; short shots</b> — a stray clip under a second</span>
+      <span class="em" style="--c:var(--c-gap)"><i></i><b>Dropped frames</b> — skips in raw recordings</span>
+      <span class="em" style="--c:var(--c-decode)"><i></i><b>Corrupt frames</b> — damaged, undecodable frames</span>
     </div>
   </div>
 </section>
@@ -520,9 +507,9 @@ footer{padding:54px 0 70px}
   <div class="wrap">
     <div class="feat">
       <div class="rv">
-        <div class="sec-eyebrow" style="color:var(--c-spell)">New in 1.5 · 100% on-device</div>
+        <div class="sec-eyebrow" style="color:var(--c-spell)">On-screen text · 100% on-device</div>
         <h2 class="sec-h" style="font-size:clamp(28px,4vw,42px)">It reads your titles, not just your frames.</h2>
-        <p class="sec-lead" style="margin-top:16px">A misspelled name card is the one mistake everyone sees and nobody catches in time. Blackspot now reads the burned-in text in your video — lower-thirds, titles, captions — and flags the likely typos, right on your Mac.</p>
+        <p class="sec-lead" style="margin-top:16px">A misspelled name card is the one mistake everyone sees and nobody catches in time. Blackspot reads the burned-in text in your video — lower-thirds, titles, captions — and flags the likely typos, right on your Mac.</p>
         <div class="flist">
           <div class="fitem"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Catches the typos that ship</b><p>A wrong name, “Compting” for “Computing” — pinned to the exact moment it's on screen.</p></div></div>
           <div class="fitem"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><div><b>Knows editorial from set dressing</b><p>It checks the text you added — not the posters and book spines on the wall behind you — so you're not buried in false flags.</p></div></div>
@@ -530,23 +517,14 @@ footer{padding:54px 0 70px}
         </div>
       </div>
       <div class="featshot rv" style="transition-delay:.1s">
-        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(140deg,#243040,#151c26);aspect-ratio:16/10;border:1px solid var(--line-2)">
-          <div style="position:absolute;inset:0;background:radial-gradient(115% 85% at 72% 30%,rgba(130,150,180,.20),transparent 58%)"></div>
-          <div style="position:absolute;left:7%;bottom:15%;color:#fff;font-family:var(--mono);text-shadow:0 1px 10px rgba(0,0,0,.55)">
-            <div style="font-size:21px;font-weight:700;letter-spacing:.05em">RAN DAVIDI</div>
-            <div style="font-size:15.5px;margin-top:7px">CEO of
-              <span style="text-decoration:underline wavy #FF6B6B;text-underline-offset:4px;text-decoration-thickness:2px">Proces</span>
-              <span style="text-decoration:underline wavy #FF6B6B;text-underline-offset:4px;text-decoration-thickness:2px">Compting</span>
-              <span style="text-decoration:underline wavy #FF6B6B;text-underline-offset:4px;text-decoration-thickness:2px">Sotfware</span>
-              <span style="text-decoration:underline wavy #FF6B6B;text-underline-offset:4px;text-decoration-thickness:2px">Deleveopr</span>
-            </div>
-          </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line-2);background:#11161d">
+          <img src="assets/ex_spell.jpg" alt="A lower-third title card reading 'CEO of Proces Compting Sotfware Deleveopr' — four misspelled words on a real podcast frame" style="display:block;width:100%;height:auto" loading="lazy">
           <div style="position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:7px;background:var(--c-spell);color:#fff;font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 11px;border-radius:10px;box-shadow:0 6px 18px rgba(99,102,241,.45)">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l3.5-10 3.5 10"/><path d="M4 12.5h5"/><path d="M13 13l2.4 2.4L21 9"/></svg>
             4 misspellings · 23:42
           </div>
         </div>
-        <div class="shotcap" style="margin-top:14px">Four typos in one name card — <b>flagged before it ships.</b></div>
+        <div class="shotcap" style="margin-top:14px"><b>Proces, Compting, Sotfware, Deleveopr</b> — four typos in one card, from a real scan.</div>
       </div>
     </div>
   </div>
