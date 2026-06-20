@@ -1,0 +1,33 @@
+# Blackspot
+
+> Blackspot is on-device video quality-control (QC) software for macOS. It scans a finished video export and reports the exact timestamps of defects, so an editor checks a handful of marks instead of re-watching the whole runtime.
+
+Blackspot runs entirely on your Mac. Your footage never leaves the machine; nothing is uploaded.
+
+## What it is
+- Product: Blackspot — Video QC for Mac
+- Platform: macOS 11 or later, Apple Silicon
+- Site: https://tryblackspot.com
+- Download: https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg
+- Privacy: 100% on-device and offline. No upload, no account.
+
+## What it detects
+- Black frames — single black frames and longer black segments
+- Frozen / stuck frames
+- Audio dropouts — dead air and silence
+- Audio spikes / clipping
+- Color glitches — green/magenta/blue render corruption
+- Exposure — over-exposed / washed-out sections
+- Flash / short shots — stray sub-second clips between cuts
+- On-screen text spelling — misspelled titles, lower-thirds and captions, read on-device
+- Skipped / dropped frames
+- Corrupt / decode-error frames
+
+## How it works
+Blackspot analyzes the export and returns each defect with an exact timestamp. A built-in player jumps straight to each flagged moment for confirmation. Flags are candidates, not verdicts — the editor confirms each one in the player.
+
+## Premiere Pro
+Blackspot also ships a Premiere Pro panel that finds timeline gaps and defects and drops a clickable marker on the sequence, without exporting the video or leaving Premiere.
+
+## Who it's for
+Video editors and producers working with long-form content — podcasts, interviews, and talks — who need to QC a full export before delivery.

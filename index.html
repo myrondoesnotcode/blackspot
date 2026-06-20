@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blackspot — Find the flaw before they do</title>
+<title>Blackspot — Video QC for Mac | Black Frame &amp; Freeze Detection</title>
 <meta name="description" content="Blackspot scans your full video export for black frames, freezes, audio dropouts, glitches and misspelled titles — then hands you the exact timestamps to verify. 100% on your Mac.">
 <link rel="canonical" href="https://tryblackspot.com/">
 <!-- Open Graph / link preview (WhatsApp, iMessage, Slack, X, LinkedIn, Facebook) -->
@@ -22,6 +22,36 @@
 <meta name="twitter:title" content="Blackspot — Find the flaw before they do">
 <meta name="twitter:description" content="Black frames, freezes, audio dropouts & glitches — caught with the exact timestamps. 100% on your Mac.">
 <meta name="twitter:image" content="https://tryblackspot.com/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Blackspot",
+  "applicationCategory": "MultimediaApplication",
+  "applicationSubCategory": "Video Quality Control",
+  "operatingSystem": "macOS 11+ (Apple Silicon)",
+  "url": "https://tryblackspot.com/",
+  "downloadUrl": "https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg",
+  "image": "https://tryblackspot.com/og-image.jpg",
+  "description": "Video QC for macOS. Blackspot scans your full video export for black frames, frozen frames, audio dropouts, color glitches, exposure problems, flash/short shots and misspelled title cards, then hands you the exact timestamps to verify. 100% on-device.",
+  "featureList": [
+    "Black frame detection",
+    "Frozen / freeze-frame detection",
+    "Audio dropout and silence detection",
+    "Color glitch detection",
+    "Exposure / washed-out detection",
+    "Flash and short-shot detection",
+    "On-screen text (burned-in caption) spell check",
+    "Skipped / dropped frame detection",
+    "Premiere Pro timeline gap detection"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blackspot",
+    "url": "https://tryblackspot.com/"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -650,6 +680,54 @@ footer{padding:54px 0 70px}
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
+<style>
+.faq{padding:30px 0}
+.faq .faq-eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--c-audio)}
+.faq .faq-h{font-weight:800;font-size:clamp(30px,4.6vw,50px);line-height:1.04;letter-spacing:-.03em;margin:14px 0 28px;color:var(--ink)}
+.faq-list{max-width:840px}
+.faq-item{border:1px solid var(--line-2);border-radius:var(--radius-md);background:var(--surface);margin:10px 0;overflow:hidden;transition:.16s}
+.faq-item[open]{box-shadow:var(--shadow-sm)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;font-family:var(--sans);font-weight:700;font-size:17px;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .ico{flex:none;width:24px;height:24px;border-radius:50%;background:var(--yellow-soft);display:grid;place-items:center;color:var(--ink);font-weight:800;font-size:16px;line-height:1;transition:.16s}
+.faq-item[open] summary .ico{background:var(--yellow);transform:rotate(45deg)}
+.faq-item .ans{padding:0 20px 20px;color:var(--ink-2);font-size:15.5px;line-height:1.62;max-width:70ch}
+.faq-item .ans b{color:var(--ink);font-weight:700}
+</style>
+<section class="faq" id="faq">
+  <div class="wrap rv">
+    <div class="faq-eyebrow">FAQ</div>
+    <h2 class="faq-h">Questions, answered.</h2>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Does Blackspot upload my video anywhere?<span class="ico">+</span></summary><div class="ans">No. Everything runs on your Mac — <b>no upload, no account, no servers</b>. Your footage never leaves the machine, so unreleased cuts and clients' raw recordings stay exactly where they are.</div></details>
+      <details class="faq-item"><summary>What does Blackspot check for?<span class="ico">+</span></summary><div class="ans">Black frames, frozen frames, audio dropouts and silence, audio spikes, color glitches, over-exposed or washed-out sections, stray sub-second flash shots, skipped or dropped frames, and corrupt frames — plus misspelled on-screen text in titles, lower-thirds and captions. Every flag comes back with an <b>exact timestamp</b>.</div></details>
+      <details class="faq-item"><summary>Will it catch a single black frame?<span class="ico">+</span></summary><div class="ans">Yes. Detection is frame-rate aware, so a single black frame is caught whether the footage runs at 24, 25, 30 or 60 fps — the kind of one-frame flash that's almost impossible to spot by scrubbing.</div></details>
+      <details class="faq-item"><summary>What do I need to run it?<span class="ico">+</span></summary><div class="ans">A Mac running <b>macOS 11 or later on Apple Silicon</b>. Blackspot reads your export straight from disk, in place — even a multi-gigabyte 4K master — with nothing to set up.</div></details>
+      <details class="faq-item"><summary>How long does a scan take?<span class="ico">+</span></summary><div class="ans">One pass over the whole file — usually <b>minutes, not the full runtime</b>. You check a handful of timestamps instead of re-watching the entire export.</div></details>
+      <details class="faq-item"><summary>Does it work with Premiere Pro?<span class="ico">+</span></summary><div class="ans">Yes. A Premiere Pro panel scans your sequence, finds timeline gaps and defects, and drops a clickable marker on each — <b>without exporting or leaving Premiere</b>.</div></details>
+      <details class="faq-item"><summary>Can it really read on-screen text?<span class="ico">+</span></summary><div class="ans">Yes. Blackspot reads burned-in titles, lower-thirds and captions on-device and flags likely misspellings, so a typo in a name card gets caught before the episode goes out.</div></details>
+      <details class="faq-item"><summary>Will it flag things that are actually fine?<span class="ico">+</span></summary><div class="ans">Sometimes, by design. <b>Flags are candidates, not verdicts</b> — an intentional intro black or a static slate may show up. You confirm or dismiss each one in the built-in player; the whole idea is to check a few marks, not the entire runtime.</div></details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Does Blackspot upload my video anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs on your Mac — no upload, no account, no servers. Your footage never leaves the machine, so unreleased cuts and clients' raw recordings stay exactly where they are." } },
+    { "@type": "Question", "name": "What does Blackspot check for?", "acceptedAnswer": { "@type": "Answer", "text": "Black frames, frozen frames, audio dropouts and silence, audio spikes, color glitches, over-exposed or washed-out sections, stray sub-second flash shots, skipped or dropped frames, and corrupt frames — plus misspelled on-screen text in titles, lower-thirds and captions. Every flag comes back with an exact timestamp." } },
+    { "@type": "Question", "name": "Will it catch a single black frame?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Detection is frame-rate aware, so a single black frame is caught whether the footage runs at 24, 25, 30 or 60 fps." } },
+    { "@type": "Question", "name": "What do I need to run it?", "acceptedAnswer": { "@type": "Answer", "text": "A Mac running macOS 11 or later on Apple Silicon. Blackspot reads your export straight from disk, in place — even a multi-gigabyte 4K master." } },
+    { "@type": "Question", "name": "How long does a scan take?", "acceptedAnswer": { "@type": "Answer", "text": "One pass over the whole file — usually minutes, not the full runtime. You check a handful of timestamps instead of re-watching the entire export." } },
+    { "@type": "Question", "name": "Does it work with Premiere Pro?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A Premiere Pro panel scans your sequence, finds timeline gaps and defects, and drops a clickable marker on each, without exporting or leaving Premiere." } },
+    { "@type": "Question", "name": "Can it really read on-screen text?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Blackspot reads burned-in titles, lower-thirds and captions on-device and flags likely misspellings, so a typo in a name card gets caught before the episode goes out." } },
+    { "@type": "Question", "name": "Will it flag things that are actually fine?", "acceptedAnswer": { "@type": "Answer", "text": "Sometimes, by design. Flags are candidates, not verdicts — an intentional intro black or a static slate may show up. You confirm or dismiss each one in the built-in player." } }
+  ]
+}
+</script>
+
 <!-- ===================== FINAL CTA ===================== -->
 <section class="final" style="padding-bottom:40px">
   <div class="wrap">
@@ -675,6 +753,7 @@ footer{padding:54px 0 70px}
     <div>
       <div class="fbrand"><span class="logo sm"><i></i></span><span class="bt">BLACKSPOT</span></div>
       <div class="copy">Video quality control · made for macOS</div>
+      <div style="margin-top:12px;font-family:var(--mono);font-size:12.5px"><a href="/blackspot-vs-framesense/" style="color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--line-2)">Blackspot vs FrameSense →</a></div>
     </div>
     <p class="note"><b>Flags are candidates, not verdicts.</b> Blackspot points you at the moments worth a look — intentional intro black and static slates show up by design. You confirm each one in the player. That's the whole idea: check a handful of marks, not the entire runtime.</p>
   </div>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blackspot vs FrameSense — On-Device Video QC for Mac | Blackspot</title>
+<meta name="description" content="Blackspot vs FrameSense for video QC. Blackspot runs 100% on your Mac and is available to download today; FrameSense is a cloud upload service in early-access. See how they compare.">
+<link rel="canonical" href="https://tryblackspot.com/blackspot-vs-framesense/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Blackspot">
+<meta property="og:url" content="https://tryblackspot.com/blackspot-vs-framesense/">
+<meta property="og:title" content="Blackspot vs FrameSense — on-device video QC for Mac">
+<meta property="og:description" content="One runs on your Mac and ships today. One is a cloud upload service still on a waitlist. Here's the side-by-side.">
+<meta property="og:image" content="https://tryblackspot.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blackspot vs FrameSense — on-device video QC for Mac">
+<meta name="twitter:description" content="One runs on your Mac and ships today. One is a cloud upload service still on a waitlist. Here's the side-by-side.">
+<meta name="twitter:image" content="https://tryblackspot.com/og-image.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Blackspot vs FrameSense",
+  "url": "https://tryblackspot.com/blackspot-vs-framesense/",
+  "description": "How Blackspot and FrameSense compare for automated video QC. Blackspot runs on-device on your Mac and is available today; FrameSense is a cloud upload service in early-access.",
+  "about": { "@type": "SoftwareApplication", "name": "Blackspot", "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS 11+ (Apple Silicon)", "url": "https://tryblackspot.com/" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EEE4; --surface:#FFFFFF; --surface-2:#FBFAF6; --sidebar:#FCFBF8;
+  --ink:#161514; --ink-2:#5E5B54; --ink-3:#9C988F; --ink-4:#C2BDB2;
+  --line:#ECE7DC; --line-2:#E0DACE;
+  --yellow:#FFD200; --yellow-d:#EEC200; --yellow-soft:#FFF4C2;
+  --c-black:#2A2A2A; --c-frozen:#33A7E6; --c-audio:#FF2E7E; --c-color:#84CC16;
+  --c-gap:#A855F7; --c-decode:#EF4444; --c-count:#F59E0B;
+  --c-exposure:#F97316; --c-flash:#14B8A6; --c-spell:#6366F1;
+  --ok:#1FB463; --warn:#F0A91E;
+  --shadow-sm:0 1px 2px rgba(30,22,8,.05), 0 1px 3px rgba(30,22,8,.04);
+  --shadow:0 6px 24px rgba(30,22,8,.07);
+  --shadow-lg:0 18px 50px rgba(30,22,8,.16);
+  --shadow-xl:0 40px 90px -20px rgba(30,22,8,.34);
+  --radius:18px; --radius-md:13px; --radius-sm:9px;
+  --sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;position:relative;
+}
+/* paper grain + faint horizontal scanlines for atmosphere */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+::selection{background:var(--yellow);color:#000}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+/* ---------- logo / dot ---------- */
+.logo{width:38px;height:38px;border-radius:10px;background:var(--yellow);display:grid;place-items:center;flex:none;box-shadow:0 2px 0 var(--yellow-d)}
+.logo i{width:15px;height:15px;border-radius:50%;background:#161514;display:block}
+.logo.sm{width:26px;height:26px;border-radius:7px;box-shadow:0 1px 0 var(--yellow-d)}
+.logo.sm i{width:10px;height:10px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:700;font-size:15px;
+  padding:13px 20px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--line-2);
+  color:var(--ink);cursor:pointer;transition:.16s;white-space:nowrap;position:relative}
+.btn:hover{border-color:var(--ink-4);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.btn svg{width:17px;height:17px;flex:none}
+.btn.primary{background:var(--yellow);border-color:var(--yellow);color:#1a1500;font-weight:800}
+.btn.primary:hover{background:var(--yellow-d);border-color:var(--yellow-d);box-shadow:0 10px 30px -6px rgba(255,210,0,.55);transform:translateY(-2px)}
+.btn.lg{padding:17px 28px;font-size:17px;border-radius:var(--radius-md)}
+.btn.ghost{background:transparent;border-color:transparent;font-weight:600}
+.btn.ghost:hover{background:rgba(255,255,255,.6);border-color:var(--line)}
+.soon{position:absolute;top:-9px;right:-9px;background:var(--ink);color:#fff;font-family:var(--mono);
+  font-size:9px;font-weight:600;letter-spacing:.06em;padding:3px 6px;border-radius:6px;text-transform:uppercase}
+
+/* ---------- nav ---------- */
+header.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(10px);
+  background:rgba(243,238,228,.78);border-bottom:1px solid transparent;transition:.2s}
+header.nav.stuck{border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+.navin{display:flex;align-items:center;gap:14px;height:68px}
+.brandmark{display:flex;align-items:center;gap:11px}
+.brandmark .bt{font-weight:800;letter-spacing:.06em;font-size:15px}
+.navlinks{margin-left:auto;display:flex;align-items:center;gap:6px}
+.navlinks a.lnk{padding:9px 13px;border-radius:var(--radius-sm);color:var(--ink-2);font-weight:600;font-size:14px;transition:.13s}
+.navlinks a.lnk:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.navlinks .btn{margin-left:8px;padding:10px 16px;font-size:14px}
+@media(max-width:720px){.navlinks a.lnk{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:70px 0 40px;text-align:center;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line-2);padding:7px 14px;border-radius:100px;box-shadow:var(--shadow-sm)}
+.eyebrow .pip{width:8px;height:8px;border-radius:50%;background:var(--c-audio);box-shadow:0 0 0 4px rgba(255,46,126,.15);animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+h1.head{font-weight:800;font-size:clamp(40px,7.4vw,86px);line-height:.97;letter-spacing:-.035em;margin:24px 0 0}
+h1.head em{font-style:normal;color:var(--ink);position:relative;white-space:nowrap}
+h1.head em::before{content:"";position:absolute;left:-2px;right:-2px;bottom:.07em;height:.30em;background:var(--yellow);z-index:-1;transform:skewX(-9deg)}
+.sub{max-width:660px;margin:26px auto 0;font-size:clamp(17px,2.1vw,21px);color:var(--ink-2);line-height:1.5}
+.sub b{color:var(--ink);font-weight:700}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.trust{margin-top:22px;display:flex;gap:8px 18px;justify-content:center;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12.5px;color:var(--ink-3);letter-spacing:.02em}
+.trust span{display:inline-flex;align-items:center;gap:7px}
+.trust b{color:var(--ink-2);font-weight:600}
+.trust .d{width:5px;height:5px;border-radius:50%;background:var(--ok)}
+
+/* hero kicker (the witty line) */
+.kicker{margin:42px auto 0;max-width:600px;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  color:var(--ink-2);background:var(--surface-2);border:1px dashed var(--line-2);border-radius:var(--radius-md);
+  padding:16px 20px;text-align:left}
+.kicker .ts{color:var(--ink);font-weight:600;background:var(--yellow-soft);padding:1px 6px;border-radius:5px}
+
+/* ---------- staggered reveal ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- mac window / product shot ---------- */
+.shotwrap{margin:60px auto 0;max-width:1000px;perspective:1800px}
+.macwin{background:var(--surface);border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow-xl);transform:rotateX(2.2deg);transform-origin:center top}
+.titlebar{display:flex;align-items:center;gap:12px;height:42px;padding:0 15px;
+  background:linear-gradient(var(--surface-2),#F4F1EA);border-bottom:1px solid var(--line)}
+.lights{display:flex;gap:8px}
+.lights i{width:12px;height:12px;border-radius:50%;background:var(--c);display:block;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+.winttl{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--ink-2);margin:0 auto;white-space:nowrap}
+.winttl .sep{color:var(--ink-4)}
+.winttl .fn{color:var(--ink-3);font-family:var(--mono);font-size:12px;font-weight:500}
+.winr{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+@media(max-width:720px){.winr{display:none}.winttl .fn{display:none}}
+.appbody{padding:18px 20px 20px}
+
+.resbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.verdict{display:flex;align-items:center;gap:11px;background:rgba(240,169,30,.10);border:1px solid rgba(240,169,30,.28);
+  border-radius:var(--radius-md);padding:9px 14px}
+.verdict .vm{width:24px;height:24px;border-radius:7px;background:var(--warn);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;flex:none}
+.verdict b{font-size:15px}.verdict .mut{color:var(--ink-3);font-size:13px}
+.counts{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink-2);
+  background:var(--surface-2);border:1px solid var(--line);border-radius:100px;padding:5px 11px}
+.chip .dt{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.chip .n{font-family:var(--mono);color:var(--ink)}
+@media(max-width:720px){.counts{margin-left:0;width:100%}}
+
+.tl-legend{display:flex;gap:16px;flex-wrap:wrap;margin:4px 2px 10px;font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+.tl-legend span{display:inline-flex;align-items:center;gap:6px}
+.tl-legend i{width:9px;height:9px;border-radius:2px;background:var(--c);display:block}
+
+.timeline{position:relative;height:54px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:var(--radius-sm);overflow:hidden}
+.timeline .grid{position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),var(--line) 10%)}
+.mark{position:absolute;top:8px;bottom:8px;width:4px;border-radius:3px;background:var(--c);transform:translateX(-50%);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 18%,transparent)}
+.mark.w{width:14px;border-radius:3px}
+.beam{position:absolute;top:0;bottom:0;width:2px;background:linear-gradient(var(--yellow-d),var(--yellow));
+  box-shadow:0 0 14px 3px rgba(255,210,0,.6);left:0;animation:sweep 4.6s cubic-bezier(.6,0,.4,1) infinite}
+.beam::after{content:"";position:absolute;top:0;bottom:0;left:-46px;width:46px;
+  background:linear-gradient(90deg,transparent,rgba(255,210,0,.16))}
+@keyframes sweep{0%{left:-2%}55%{left:101%}100%{left:101%}}
+@media(prefers-reduced-motion:reduce){.beam{animation:none;left:84%;opacity:.6}}
+.ruler{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-4);margin:6px 2px 16px}
+
+.split{display:grid;grid-template-columns:1fr .92fr;gap:16px}
+@media(max-width:720px){.split{grid-template-columns:1fr}}
+.issues{display:flex;flex-direction:column;gap:6px}
+.irow{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--line);background:var(--surface)}
+.irow.hot{border-color:var(--line-2);box-shadow:var(--shadow-sm);background:var(--surface-2)}
+.irow .dt{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.irow .tm{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-weight:600;flex:none}
+.irow .lb{font-size:13px;color:var(--ink-2);font-weight:600}
+.irow .ln{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+@media(max-width:420px){.irow .ln{display:none}}
+.player{position:relative;border-radius:var(--radius-sm);overflow:hidden;background:#000;min-height:170px;border:1px solid var(--line)}
+.player img{width:100%;height:100%;object-fit:cover;display:block}
+.player .scrim{position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.55))}
+.player .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;
+  background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.player .play svg{width:20px;height:20px;margin-left:3px;fill:#161514}
+.player .ptime{position:absolute;left:12px;bottom:11px;font-family:var(--mono);font-size:11px;color:#fff;
+  background:rgba(0,0,0,.5);padding:3px 8px;border-radius:6px;backdrop-filter:blur(4px)}
+.player .pbadge{position:absolute;right:12px;top:11px;font-family:var(--mono);font-size:10px;font-weight:600;color:#1a1500;
+  background:var(--yellow);padding:4px 9px;border-radius:6px;display:flex;align-items:center;gap:5px}
+.player .pbadge i{width:7px;height:7px;border-radius:50%;background:var(--c-audio)}
+
+/* floating caption under shot */
+.shotcap{text-align:center;margin-top:20px;font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
+.shotcap b{color:var(--ink-2);font-weight:600}
+
+/* ---------- generic section ---------- */
+section{padding:90px 0;position:relative}
+.sec-eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--c-audio)}
+.sec-h{font-weight:800;font-size:clamp(30px,4.6vw,50px);line-height:1.04;letter-spacing:-.03em;margin:14px 0 0;max-width:18ch}
+.sec-lead{margin-top:18px;font-size:18px;color:var(--ink-2);max-width:60ch;line-height:1.55}
+
+/* ---------- problem ---------- */
+.problem{background:var(--ink);color:#EDE7DA;border-radius:34px;margin:0 0 0;overflow:hidden;position:relative}
+.problem .wrap{padding:108px 88px}
+.problem .sec-eyebrow{color:var(--yellow)}
+.problem .sec-h{color:#fff;max-width:20ch}
+.problem .sec-lead{color:#B9B3A6;max-width:62ch}
+.problem .frames{position:absolute;inset:0;opacity:.5;
+  background-image:repeating-linear-gradient(90deg,transparent 0,transparent 38px,rgba(255,255,255,.045) 38px,rgba(255,255,255,.045) 40px)}
+.flaws{display:flex;gap:11px;flex-wrap:wrap;margin-top:46px;position:relative}
+.flaw{font-family:var(--mono);font-size:12.5px;color:#CFC9BC;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 15px;display:inline-flex;gap:9px;align-items:center}
+.flaw i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.problem .punch{margin-top:60px;font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-.02em;color:#fff;max-width:24ch;line-height:1.18;position:relative}
+.problem .punch u{text-decoration:none;color:var(--yellow);white-space:nowrap}
+@media(max-width:720px){.problem .wrap{padding:60px 28px}.problem{border-radius:0;margin-left:-28px;margin-right:-28px}}
+
+/* ---------- detect grid ---------- */
+.det-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px}
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  box-shadow:var(--shadow-sm);transition:.18s;position:relative;overflow:hidden}
+.dcard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line-2)}
+.dcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c);opacity:.9}
+.dcard .dh{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.dcard .ico{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none;
+  background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c)}
+.dcard .ico svg{width:21px;height:21px}
+.dcard h3{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.dcard .tag{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);text-transform:uppercase;letter-spacing:.1em;margin-top:1px}
+.dcard p{font-size:14.5px;color:var(--ink-2);line-height:1.55}
+
+/* ---------- how it works ---------- */
+.how{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px}
+@media(max-width:820px){.steps{grid-template-columns:1fr;gap:14px}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative}
+.step .no{font-family:var(--mono);font-size:13px;font-weight:700;color:#1a1500;background:var(--yellow);
+  width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:18px}
+.step h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:9px}
+.step p{font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.step .arrow{position:absolute;right:-24px;top:46px;color:var(--ink-4);z-index:2}
+@media(max-width:820px){.step .arrow{display:none}}
+
+/* ---------- privacy band ---------- */
+.privacy{text-align:center}
+.privacy .lock{width:64px;height:64px;border-radius:18px;background:var(--yellow-soft);border:1px solid #F2E4A8;
+  display:grid;place-items:center;margin:0 auto 26px;color:#9a7a00}
+.privacy .lock svg{width:30px;height:30px}
+.privacy h2{font-weight:800;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.03em;line-height:1.05;max-width:16ch;margin:0 auto}
+.privacy p{margin:20px auto 0;max-width:56ch;font-size:18px;color:var(--ink-2);line-height:1.55}
+.privacy .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.ppill{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14px;background:var(--surface);
+  border:1px solid var(--line-2);border-radius:100px;padding:10px 18px;box-shadow:var(--shadow-sm)}
+.ppill svg{width:16px;height:16px;color:var(--ok)}
+
+/* ---------- features list ---------- */
+.feat{display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center}
+@media(max-width:860px){.feat{grid-template-columns:1fr;gap:36px}}
+.flist{display:flex;flex-direction:column;gap:4px;margin-top:34px}
+.fitem{display:flex;gap:15px;padding:15px 4px;border-bottom:1px solid var(--line)}
+.fitem:last-child{border-bottom:0}
+.fitem .fi{width:22px;height:22px;flex:none;color:var(--c-color);margin-top:1px}
+.fitem b{font-size:15.5px;font-weight:700}
+.fitem p{font-size:14px;color:var(--ink-2);margin-top:3px;line-height:1.5}
+.featshot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-2);box-shadow:var(--shadow-lg);background:#000;position:relative}
+.featshot img{width:100%;display:block;opacity:.96}
+.featshot .ovl{position:absolute;left:14px;bottom:14px;display:flex;gap:8px}
+.featshot .ot{font-family:var(--mono);font-size:11px;color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:7px;backdrop-filter:blur(5px);display:flex;gap:7px;align-items:center}
+.featshot .ot i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+
+/* ---------- final cta ---------- */
+.final{text-align:center}
+.finalcard{background:var(--ink);color:#fff;border-radius:34px;padding:70px 40px;position:relative;overflow:hidden}
+.finalcard .spotlight{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:680px;height:680px;
+  background:radial-gradient(circle,rgba(255,210,0,.22),transparent 62%);pointer-events:none}
+.finalcard .logo{margin:0 auto 26px;width:54px;height:54px;border-radius:14px}
+.finalcard .logo i{width:22px;height:22px}
+.finalcard h2{font-weight:800;font-size:clamp(30px,5vw,54px);letter-spacing:-.03em;line-height:1.02;position:relative}
+.finalcard .fsub{margin:18px auto 0;color:#C7C1B4;font-size:18px;max-width:46ch;position:relative}
+.finalcard .cta-row{margin-top:36px}
+.finalcard .req{margin-top:18px;font-family:var(--mono);font-size:12px;color:#8B867B;position:relative}
+
+/* ---------- footer ---------- */
+footer{padding:54px 0 70px}
+.foot{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;justify-content:space-between}
+.foot .note{max-width:46ch;font-size:13.5px;color:var(--ink-3);line-height:1.6}
+.foot .note b{color:var(--ink-2);font-weight:600}
+.foot .fbrand{display:flex;align-items:center;gap:11px}
+.foot .fbrand .bt{font-weight:800;letter-spacing:.06em;font-size:14px}
+.foot .copy{font-family:var(--mono);font-size:11.5px;color:var(--ink-4);margin-top:7px}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:34px;translate:-50% 40px;z-index:200;opacity:0;
+  background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:13px 20px;border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:11px;transition:.28s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+#toast.show{opacity:1;translate:-50% 0}
+#toast .logo.sm{width:22px;height:22px}
+#toast .logo.sm i{width:8px;height:8px}
+
+/* ---------- announcement bar ---------- */
+.annc{display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;padding:9px 22px;text-align:center;font-size:13.5px;font-weight:600;color:var(--ink);background:linear-gradient(90deg,var(--yellow-soft),#FFE486);border-bottom:1px solid var(--line-2);transition:filter .15s}
+.annc:hover{filter:brightness(1.03)}
+.annc .tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;background:var(--ink);color:var(--yellow);padding:3px 7px;border-radius:5px}
+.annc .arr{font-weight:800;transition:transform .15s}
+.annc:hover .arr{transform:translateX(4px)}
+@media(max-width:520px){.annc{font-size:12.5px;gap:8px;padding:8px 16px}}
+/* ---------- Premiere showcase ---------- */
+.pmr-shot{display:grid;grid-template-columns:minmax(0,0.82fr) auto minmax(0,1.18fr);align-items:center;gap:24px;max-width:1080px;margin:52px auto 0}
+.pmr-frame{margin:0;min-width:0}
+.pmr-frame img{display:block;width:100%;height:auto;border-radius:13px;border:1px solid var(--line-2);background:#0c0c0e;box-shadow:var(--shadow-lg)}
+.pmr-frame figcaption{margin-top:13px;font-family:var(--mono);font-size:12px;letter-spacing:.01em;color:var(--ink-3);text-align:center}
+.pmr-frame figcaption b{font-weight:700}
+.pmr-arrow{display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--ink-4)}
+.pmr-arrow svg{width:32px;height:32px}
+.pmr-arrow span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);white-space:nowrap}
+@media(max-width:820px){.pmr-shot{grid-template-columns:1fr;gap:18px;max-width:520px}.pmr-arrow{flex-direction:row;gap:10px}.pmr-arrow svg{transform:rotate(90deg)}}
+</style>
+
+<style>
+.cmp{padding:8px 0 10px}
+.cmp-wrap{max-width:980px;margin:0 auto}
+.cmp-scroll{overflow-x:auto;border-radius:var(--radius-md)}
+.cmp-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius-md);overflow:hidden;font-size:15px;min-width:560px}
+.cmp-table th,.cmp-table td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp-table thead th{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);font-weight:600}
+.cmp-table thead th.bs{color:var(--ink);background:var(--yellow-soft)}
+.cmp-table tbody tr:last-child td{border-bottom:none}
+.cmp-table td.feat{font-weight:700;color:var(--ink);width:22%}
+.cmp-table td.bs{background:#FFFDF3;color:var(--ink);font-weight:600}
+.cmp-table td.fs{color:var(--ink-2)}
+.cmp-note{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);margin:16px 2px 0;line-height:1.65;max-width:80ch}
+.why{padding:18px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.why-card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius-md);padding:22px;box-shadow:var(--shadow-sm)}
+.why-card h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin:0 0 8px}
+.why-card p{color:var(--ink-2);font-size:15px;line-height:1.6;margin:0}
+.why-card .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle}
+.lead{max-width:680px;margin:22px auto 0;font-size:clamp(16px,2vw,19px);color:var(--ink-2);line-height:1.55;text-align:center}
+.prem-call{background:var(--ink);color:#fff;border-radius:var(--radius);padding:36px 32px;max-width:880px;margin:0 auto;text-align:center}
+.prem-call h2{color:#fff;font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
+.prem-call p{color:#D9D5CC;font-size:16px;line-height:1.6;max-width:62ch;margin:0 auto}
+.prem-call a{color:var(--yellow);text-decoration:none;border-bottom:1px solid rgba(255,210,0,.4)}
+@media(max-width:760px){.why-grid{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap navin">
+    <a class="brandmark" href="/"><span class="logo sm"><i></i></span><span class="bt">BLACKSPOT</span></a>
+    <nav class="navlinks">
+      <a class="lnk" href="/#detect">What it catches</a>
+      <a class="lnk" href="/#how">How it works</a>
+      <a class="lnk" href="/#premiere">Premiere</a>
+      <a class="btn primary dl" href="https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg" download="Blackspot.dmg"><svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg> Download</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:18px">
+  <div class="wrap">
+    <span class="eyebrow"><span class="pip"></span>Comparison</span>
+    <h1 class="head" style="font-size:clamp(36px,6.2vw,72px)">Blackspot <em>vs</em> FrameSense</h1>
+    <p class="lead">Two takes on catching defects before delivery. Blackspot runs entirely on your Mac and you can download it today. FrameSense is a cloud service you upload to, currently in early access. Here's how they line up.</p>
+  </div>
+</section>
+
+<section class="cmp">
+  <div class="wrap cmp-wrap">
+    <div class="cmp-scroll">
+      <table class="cmp-table">
+        <thead><tr><th>&nbsp;</th><th class="bs">Blackspot</th><th>FrameSense</th></tr></thead>
+        <tbody>
+      <tr><td class="feat">Available now</td><td class="bs">Yes — download it today</td><td class="fs">Early-access waitlist (not yet public)</td></tr>
+      <tr><td class="feat">Where it runs</td><td class="bs">On your Mac, on-device</td><td class="fs">In the cloud — you upload your export</td></tr>
+      <tr><td class="feat">Your footage</td><td class="bs">Never leaves your machine</td><td class="fs">Uploaded to their servers</td></tr>
+      <tr><td class="feat">Form factor</td><td class="bs">Native macOS app (Apple Silicon)</td><td class="fs">Web-based; fits Premiere Pro &amp; DaVinci workflows</td></tr>
+      <tr><td class="feat">Works in Premiere Pro</td><td class="bs">Panel drops markers on your sequence — no export step</td><td class="fs">Works alongside Premiere Pro workflows</td></tr>
+      <tr><td class="feat">What it looks for</td><td class="bs">Black, frozen, audio, color, exposure, flash, dropped &amp; corrupt frames — plus misspelled on-screen text</td><td class="fs">Black, freeze, silence &amp; loudness, broadcast-safe, codec / container &amp; HDR delivery checks — plus on-screen text</td></tr>
+      <tr><td class="feat">Best fit</td><td class="bs">Editors who want fast, private QC on a Mac</td><td class="fs">Teams that need broadcast delivery-spec compliance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">Comparison based on publicly available information about FrameSense (framesense.io) as of June 2026. FrameSense is in pre-launch early access, so its features, availability and pricing may change — check their site for the latest. Both tools detect a similar core set of defects; the day-to-day difference is where your footage goes and whether you can use it now.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap cmp-wrap">
+    <div class="rv">
+      <div class="sec-eyebrow">Why it matters</div>
+      <h2 class="sec-h">The differences you'll feel.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><h3><span class="dot" style="background:var(--ok)"></span>Available today</h3><p>You don't join a list and wait. Download the Mac app and scan your next export this afternoon.</p></div>
+      <div class="why-card"><h3><span class="dot" style="background:var(--c-frozen)"></span>Nothing gets uploaded</h3><p>The whole scan happens on your machine. Unreleased cuts and clients' raw recordings never touch a server.</p></div>
+      <div class="why-card"><h3><span class="dot" style="background:var(--c-spell)"></span>Native to your Mac</h3><p>A real macOS app that reads files in place — no browser tab, no upload queue, no account.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:30px 0 40px">
+  <div class="wrap">
+    <div class="prem-call rv">
+      <h2>Editors have been asking Adobe for this.</h2>
+      <p>Since March 2024 there's been an <a href="https://community.adobe.com/t5/premiere-pro-ideas/black-frame-and-blanking-detection-markers-in-premiere-pro-sequences/idi-p/14459988" rel="nofollow noopener" target="_blank">open request</a> on Adobe's own ideas forum for built-in black-frame detection and markers in Premiere Pro — still unanswered. Blackspot's Premiere panel does exactly that: it scans your sequence and drops a clickable marker on every gap and defect, without exporting.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="finalcard rv">
+      <div class="spotlight"></div>
+      <span class="logo"><i></i></span>
+      <h2>Find the flaw<br>before they do.</h2>
+      <p class="fsub">Catch the black frame, the dropout and the glitch on your machine — before the episode goes out.</p>
+      <div class="cta-row">
+        <a class="btn primary lg dl" href="https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg" download="Blackspot.dmg"><svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg> Download for Mac</a>
+      </div>
+      <div class="req">For macOS · Runs entirely on your machine</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="fbrand"><span class="logo sm"><i></i></span><span class="bt">BLACKSPOT</span></div>
+      <div class="copy">Video quality control · made for macOS</div>
+    </div>
+    <p class="note"><b>Flags are candidates, not verdicts.</b> Blackspot points you at the moments worth a look — you confirm each one in the player. Check a handful of marks, not the entire runtime.</p>
+  </div>
+</footer>
+
+</body>
+</html>
