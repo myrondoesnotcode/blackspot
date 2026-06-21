@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "url": "https://github.com/myrondoesnotcode/blackspot/releases/latest/download/Blackspot.dmg",
-  "notes": "Adds an on-screen text check: Blackspot now reads burned-in titles, lower-thirds and captions on-device and flags likely misspellings — so an embarrassing typo in a name card gets caught before you ship."
+  "notes": "Sharper audio and flash detection. Blackspot now catches buried-voice moments \u2014 where a voice drops far below the rest of the program without going fully silent \u2014 and flags far fewer false dropouts on natural pauses. Short-shot detection no longer over-flags fast-cut or archival footage, while still catching genuine stray clips."
 }
